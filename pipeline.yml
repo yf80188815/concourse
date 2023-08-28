@@ -1,0 +1,29 @@
+resources:
+  - name: git-repo
+    type: git
+    source:
+      uri: https://github.com/yf80188815/concourse.git
+      branch: master
+      username: yf80188815@gmail.com
+      password: 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
+
+jobs:
+  - name: yang-gin-test
+    plan:
+      - get: git-repo
+        trigger: true
+      - task: build
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: golang, tag: 1.16 }
+          inputs:
+            - name: git-repo
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                cd git-repo
+                go build -o main .
