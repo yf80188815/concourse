@@ -27,3 +27,4 @@ jobs:
               - |
                 cd git-repo
                 go build -o main .
+

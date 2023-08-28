@@ -3,6 +3,11 @@ FROM golang:1.16-alpine
 
 WORKDIR /app
 
+ENV GOPRIVATE=git.yottacloud.cn
+ENV GOSUMDB=sum.golang.google.cn
+ENV CGO_ENABLED=0
+ENV GOPROXY=https://goproxy.cn
+
 COPY go.mod .
 COPY go.sum .
 RUN go mod download
