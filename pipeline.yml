@@ -17,7 +17,7 @@ jobs:
           platform: linux
           image_resource:
             type: registry-image
-            source: { repository: golang, tag: 1.18 }
+            source: { repository: golang, tag: 1.18-alpine }
           inputs:
             - name: git-repo
           run:
