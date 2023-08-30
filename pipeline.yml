@@ -17,7 +17,7 @@ jobs:
           platform: linux
           image_resource:
             type: registry-image
-            source: { repository: golang, tag: 1.16 }
+            source: { repository: golang, tag: 1.18 }
           inputs:
             - name: git-repo
           run:
@@ -26,5 +26,7 @@ jobs:
               - -exc
               - |
                 cd git-repo
+                export GOPROXY=https://goproxy.cn,direct
+                export GOPROXYTIMEOUT=300s
                 go build -o main .
 
